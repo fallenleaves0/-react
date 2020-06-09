@@ -1,17 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import NavTop from "./component/topBar"
+
+import {ConfigProvider} from "antd"
+import {Switch,HashRouter,Route,Redirect} from "react-router-dom"
+
+import zhCN from 'antd/es/locale/zh_CN';
+import "./static/css/reset.css"
+import "./static/scss/comment.scss"
+
+
+
+
+import {Provider} from "react-redux"
+
+import store from "./store/index"
+
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <Provider store={store}>
+      <HashRouter>
+          
+              <div>
+                <NavTop ></NavTop>
+               
+            
+
+             
+              </div>
+           
+        </HashRouter>
+      </Provider>
+ ,
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();

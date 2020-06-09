@@ -1,0 +1,62 @@
+@import "~antd/dist/antd.css";
+html{
+    font-size: 100px;
+  
+ 
+ }
+ 
+ .outertopBox{
+    .topBarBox{
+        display: flex;
+        background-color: black;
+        height: 100px;
+        justify-content: space-around;
+        align-items: center;
+        img{
+            width: 190px;
+            height: 39.3px;
+        }
+        span{
+            color: #efe800;
+            font-size: 26px;
+        }
+        a.active{
+           span{
+               color: #efe800;
+           }}
+        >ul{
+            margin: 0;
+            display: flex;
+            li{
+                padding: 5px 10px ;
+               span{
+                  color: white;
+                  font-size: 16px;
+                  font-weight: bold;
+               }
+               position: relative;
+            }
+            li:hover ul{
+                display: block !important;
+              
+            }
+            li:hover>a span{
+                color: #efe800;
+            }
+        }
+    }
+    .twoHang{
+        display: none ;
+        position: absolute;
+        top: 30px;
+        left: 0;
+        background-color: black;
+        width: 150%;
+    }
+    
+ }
+@media all and (max-width:960px){
+   
+	
+
+}
