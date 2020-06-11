@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
-
-
+import { Form, Icon, Input, Button, Checkbox ,message} from 'antd';
+import {Redirect} from "react-router-dom"
+import storageUtils from "../../utils/storageUtils"
 //后引入自定义
 import "../../static/scss/login.scss"
 import logo from "../../static/img/logo.png"
+import {LoginP} from "../../API/comment"
 
  class login extends Component {
   
@@ -13,13 +14,26 @@ import logo from "../../static/img/logo.png"
         //也可以用getFieldValue("username"),获得单个的值
         //也可以用getFieldsValue()获得所有的存在一个对象中。
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields( async  (err, values) => {
           if (!err) {
-            console.log('Received values of form: ', values);
+           
+         const {data:res} = await LoginP(values.username,values.password)
+         console.log(res)
+         if(res.meta.status!==200) return message.error("用户名或者密码错误")
+          storageUtils.saveUser(res.data.token)
+            this.props.history.replace("/")
+            message.success(`欢迎${values.username}`)
           }
         });
       };
     render() {
+        const use =  storageUtils.getUser()
+        if(use){
+         
+          
+         //   this.props.history.replace() 这个一般放在事件回调函数中比如点击
+         return <Redirect to="/"/>
+        }
         const { getFieldDecorator } = this.props.form;
         return (
             <div className="loginBox">

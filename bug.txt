@@ -1,0 +1,26 @@
+1.用了exact的路由时不能嵌套子路由的，否则无法显示页面，可是不用exact我的login就显示不出来
+我把/login放在 /上方。
+
+2.在菜单的时候，我们会有一个默认的选中比如首页  defaultSelectedKeys={["/home']}
+，这个时候刷新的话还是，当前的路由地址和选中项就不会匹配。我们需要
+在this.props.location.pathName获取当前路由地址传递给SelectedKeys
+但是这个nav的props是没有传location，history，match这三个属性的，我们需要高阶组件
+withRouter来包装一下。（还有问题，直接在浏览器输入地址只有对应的路由重新渲染了）
+  
+
+注意：defaultSelectkeys只会默认显示第一次渲染的值（通过编码的效果更新没有效果）
+而selectKeys 总是根据最新的keys值显示
+我们再编码的时候首先是跳到  /  然后渲染一次导航
+然后跳转到默认跳转到home  还会渲染一次，所以不能用default，不然会出现
+登录成功的时候不会首页没有选中的效果
+
+3.如果我们选中是sub子导航，刷新之后他的项目是闭合的，子导航虽然被选中了但是没有
+显示出来。关键是我们如何拿到这个sub的key值。判断某一个sub的chidren是否含有我路由
+地址 const ci =item.children.find(citem=>citem.key===this.props.location.pathname)
+             if(ci){
+                 this.openkey = item.key
+                 
+                 我们把拿到的值存到this里才能在render里拿到,但是我们要先获取这个值
+                 不然还是没有效果，要先获取，然后再render
+             }
+4.应为我们获取导航是同步的， 第一次render / 的时候我们获取

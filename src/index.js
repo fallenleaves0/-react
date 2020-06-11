@@ -23,8 +23,10 @@ ReactDOM.render(
           
               <div style={{height:"100%"}}>
              <Switch>
-               <Route path='/login' component={Login}/>
-               <Route path='/admin' component={Admin}/>
+             <Route path='/login' component={Login} />
+             <Route path='/' component={Admin}/>
+
+           
 
              </Switch>
                
