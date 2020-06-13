@@ -6,25 +6,29 @@ import NavTop from "./component/topBar"
 import {ConfigProvider} from "antd"
 import {Switch,HashRouter,Route,Redirect} from "react-router-dom"
 
-import zhCN from 'antd/es/locale/zh_CN';
+
 import "./static/css/reset.css"
 import "./static/scss/comment.scss"
-
-
-
-
 import {Provider} from "react-redux"
 
 import store from "./store/index"
 
 
+import Login from "./route/login/login"
+import Admin from "./route/admin/admin"
 
 ReactDOM.render(
     <Provider store={store}>
       <HashRouter>
           
-              <div>
-                <NavTop ></NavTop>
+              <div style={{height:"100%"}}>
+             <Switch>
+             <Route path='/login' component={Login} />
+             <Route path='/' component={Admin}/>
+
+           
+
+             </Switch>
                
             
 
