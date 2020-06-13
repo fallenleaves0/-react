@@ -23,4 +23,47 @@ withRouter来包装一下。（还有问题，直接在浏览器输入地址只�
                  我们把拿到的值存到this里才能在render里拿到,但是我们要先获取这个值
                  不然还是没有效果，要先获取，然后再render
              }
-4.应为我们获取导航是同步的， 第一次render / 的时候我们获取
+4.axios的请求格式的处理
+
+
+6-12
+今日学习，        1.   content用的是cart组件和table组件
+                  2.    自定义bind方法
+                  3.  数据获取，我们将静态的数据配置定义再一个方法中再wiilmounted中获取
+                    我们将动态的数据获取定义一个方法在didmounted中获取
+                  4.   antd 表格的配置
+                  5.   loading配置{
+                          this.setState({loading:true})
+                    const result = await  getList()
+                     this.setState({loading:false})
+                     数据请求前都是true，请求后不管成功还是失败都是ture
+                     在表格中的配置
+                       loading={this.state.loading}
+                       这个大括号里的的loading是我们定义的值
+                     }
+                  6.modal对话框+表单，去添加或者修改，用的一个组件显示隐藏和标题的改变用
+                  数字去控制。初识state的showStatus是0表示隐藏。
+                  7.封装单独的表单组件
+
+                  8.在装饰input的时候//initialValue 这个属性在我们添加或者修改之后会让所有的初识值变成我们输入的
+//我们需要调用form对象的resetFields() 去重置输入数据，在添加和取消的时候都要reset
+                 9. 添加分类和修改分类用的一个组件，不同的功能，修改的时候通过render里获取
+                 当前选项的所有数据然后传给共同组件把当前的name显示在上面
+                 添加的时候需要把组件的form对象传过来（子传父函数）然后同过form对象的方法获取value
+                 发送aixos
+                
+              6-13
+              1.  前台分页
+                   不需要指定pagenum和pagesize
+                    把所有的都请求来了
+
+                后台分页
+                   需要指定pagenum，pagesiez
+                   不仅要返回资源数组还要返回总条数taotal
+                   有了total才可以知道页码
+              params参数看着像路径，我们定义路由的时候用占位符冒号来区别
+              冒号后面的是请求参数
+              query参数就是？拼接，&分开
+              2.我们需要调用onchange事件执行我们获取商品的数据函数，不要加括号
+              然后再我们点击不同的页码他就会去自动发请求。
+           
