@@ -20,7 +20,8 @@ import {LoginP} from "../../API/comment"
          const {data:res} = await LoginP(values.username,values.password)
          console.log(res)
          if(res.meta.status!==200) return message.error("用户名或者密码错误")
-          storageUtils.saveUser(res.data.token)
+         sessionStorage.setItem("token",res.data.token)
+          storageUtils.saveUser(res.data)
             this.props.history.replace("/")
             message.success(`欢迎${values.username}`)
           }
